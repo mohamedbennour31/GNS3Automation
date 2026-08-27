@@ -4,9 +4,8 @@ An Ansible-based network automation toolkit for managing Cisco IOS routers in a 
 
 The project provides a centralized way to test connectivity, execute operational show commands, collect information, troubleshoot routing/VPN issues, and back up router configurations.
 
----
 
-````
+
 
 The automation server connects to the Cisco IOS routers using Ansible's `network_cli` connection plugin.
 
