@@ -1,0 +1,15 @@
+---
+- name: Show running configuration
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Show running config
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: output
+
+    - name: Display running config
+      ansible.builtin.debug:
+        var: output.stdout_lines

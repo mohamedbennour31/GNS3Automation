@@ -1,0 +1,26 @@
+---
+- name: Backup router configurations
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Get running configuration
+      cisco.ios.ios_command:
+        commands:
+          - show running-config
+      register: config
+
+    - name: Create backup directory
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/../backups"
+        state: directory
+        mode: "0700"
+      delegate_to: localhost
+      run_once: true
+
+    - name: Save configuration
+      ansible.builtin.copy:
+        content: "{{ config.stdout[0] }}"
+        dest: "{{ playbook_dir }}/../backups/{{ inventory_hostname }}.cfg"
+        mode: "0600"
+      delegate_to: localhost

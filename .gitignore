@@ -1,0 +1,35 @@
+# Ansible
+*.retry
+.retry/
+
+# Secrets
+*.vault
+*.vault.yml
+vault_password_file
+.env
+.env.*
+
+# Router configuration backups
+backups/*.cfg
+
+# SSH/private keys
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+.ssh/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Windows / editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log

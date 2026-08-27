@@ -1,0 +1,15 @@
+---
+- name: Show device version
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Show version
+      cisco.ios.ios_command:
+        commands:
+          - show version
+      register: output
+
+    - name: Display version
+      ansible.builtin.debug:
+        var: output.stdout_lines

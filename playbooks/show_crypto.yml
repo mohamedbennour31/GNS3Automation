@@ -1,0 +1,16 @@
+---
+- name: Show crypto status
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Show ISAKMP and IPsec status
+      cisco.ios.ios_command:
+        commands:
+          - show crypto isakmp sa
+          - show crypto ipsec sa
+      register: output
+
+    - name: Display crypto status
+      ansible.builtin.debug:
+        var: output.stdout_lines

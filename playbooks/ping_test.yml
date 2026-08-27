@@ -1,0 +1,15 @@
+---
+- name: Ping test from routers
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Ping default gateway
+      cisco.ios.ios_command:
+        commands:
+          - ping 192.168.204.2
+      register: output
+
+    - name: Display ping results
+      ansible.builtin.debug:
+        var: output.stdout_lines

@@ -1,0 +1,15 @@
+---
+- name: Show IP route summary
+  hosts: gns3_routers
+  gather_facts: false
+
+  tasks:
+    - name: Show route summary
+      cisco.ios.ios_command:
+        commands:
+          - show ip route summary
+      register: output
+
+    - name: Display route summary
+      ansible.builtin.debug:
+        var: output.stdout_lines
